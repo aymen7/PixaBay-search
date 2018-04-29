@@ -22,14 +22,14 @@ export class SearchBoxComponent implements OnInit {
     Observable.fromEvent(this.el.nativeElement, 'keyup')
       .map((e: any) => e.target.value)
       .filter((text: string) => text.length > 1)
-      .debounceTime(300)
+      .debounceTime(500)
       .map((q: string) => this._imgService.getImage(q, 10))
       .switch()
       .subscribe(
-        (results: SearchResult) => {// on success
+        (results) => {// on success
           this.loading.emit(false);
           this.results.emit(results);
-          console.log('the first image id: ' + results.id);
+          console.log('the first image id: ' + results);
         },
         (err: any) => {
           console.log('error : ' + err);

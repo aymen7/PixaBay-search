@@ -19,7 +19,7 @@ export class ImageService {
   }
 
   getImage(query: string, per_page): Observable<SearchResult> {
-    return this._http.get(this.url + query + '&' + per_page)
+    return this._http.get(this.url + query + '&per_page=' + per_page)
       .map((res: Response) => {
         return (<any> res.json()).hits.map(hit => {
           return new SearchResult({
